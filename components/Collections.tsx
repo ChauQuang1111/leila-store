@@ -1,4 +1,4 @@
-import { getCollections } from "@/lib/actions";
+import { getCollections } from "@/lib/actions/actions";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,7 +15,6 @@ const Collections = async () => {
           {collections.map((collection: CollectionType) => (
             <Link href={`/collections/${collection._id}`} key={collection._id}>
               <Image
-                key={collection._id}
                 src={collection.image}
                 alt={collection.title}
                 width={350}
