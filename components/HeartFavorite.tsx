@@ -2,7 +2,6 @@
 
 import { useUser } from "@clerk/nextjs";
 import { Heart } from "lucide-react";
-import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
