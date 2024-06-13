@@ -20,8 +20,11 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
   return (
     <div className="max-w-[400px] flex flex-col gap-4">
       <div className="flex justify-between items-center">
-        <p className="text-heading3-bold">{productInfo.title}</p>
-        <HeartFavorite product={productInfo} />
+        <span>
+          <p className="text-heading3-bold">
+            {productInfo.title} <HeartFavorite product={productInfo} />
+          </p>
+        </span>
       </div>
 
       <div className="flex gap-2">
@@ -87,6 +90,9 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
             onClick={() => setQuantity(quantity + 1)}
           />
         </div>
+      </div>
+      <div className="flex flex-col gap-2">
+        <p className="text-base-medium text-grey-2">Available Quantity: {productInfo.quantity}</p>
       </div>
 
       <button
