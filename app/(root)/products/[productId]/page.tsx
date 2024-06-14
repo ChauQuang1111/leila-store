@@ -25,7 +25,5 @@ const ProductDetails = async ({ params }: { params: { productId: string }}) => {
     </>
   )
 }
-
-export const dynamic = "force-dynamic";
-
+export const dynamic="force-dynamic";
 export default ProductDetails

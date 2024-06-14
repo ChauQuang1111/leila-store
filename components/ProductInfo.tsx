@@ -113,3 +113,4 @@ const ProductInfo = ({ productInfo }: { productInfo: ProductType }) => {
 };
 
 export default ProductInfo;
+

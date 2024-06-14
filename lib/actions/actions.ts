@@ -25,11 +25,13 @@ export const getProductDetails = async (productId: string) => {
 }
 
 export const getSearchedProducts = async (query: string) => {
+  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/search/${query}`)
   const searchedProducts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search/${query}`)
   return await searchedProducts.json();
 }
 
 export const getOrders = async (customerId: string) => {
+  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${customerId}`)
   const orders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${customerId}`)
   return await orders.json();
 }
