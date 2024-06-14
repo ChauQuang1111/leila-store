@@ -19,6 +19,7 @@ export const getProducts = async () => {
 }
 
 export const getProductDetails = async (productId: string) => {
+  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`)
   const product = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`)
   return await product.json();
 }
