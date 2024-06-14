@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FacebookIcon,InstagramIcon,TwitchIcon,YoutubeIcon,AppleIcon} from "lucide-react";
-
+import { FacebookIcon } from "lucide-react";
+import { InstagramIcon } from "lucide-react";
+import { TwitchIcon } from "lucide-react";
+import { YoutubeIcon } from "lucide-react";
+import { AppleIcon } from "lucide-react";
 const footer =()=>{
     return(
         <div>
