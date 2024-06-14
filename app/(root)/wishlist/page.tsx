@@ -37,11 +37,21 @@ const Wishlist = () => {
     if (!signedInUser) return
 
     const wishlistProducts = await Promise.all(signedInUser.wishlist.map(async (productId) => {
-      const res = await getProductDetails(productId)
-      return res
-    }))
+      try {
+        const product = await getProductDetails(productId);
+        return product; // Return product if fetched successfully
+      } catch (error) {
+        console.error(`Error fetching product details for ID: ${productId}`, error);
+        return null; // Return null if there's an error fetching the product
+      }
+    }));
+    
+    // Filter out any products that are null (not found or error)
+    const filteredWishlistProducts = wishlistProducts.filter(product => product !== null);
+    
+    // Now filteredWishlistProducts contains only products that were successfully fetched
 
-    setWishlist(wishlistProducts)
+    setWishlist(filteredWishlistProducts)
     setLoading(false)
   }
 

@@ -1,44 +1,52 @@
-import { revalidatePath } from "next/cache";
-
 export const getCollections = async () => {
-  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/collections`)
-  const collections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections`)
+  const collections = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections`,{cache: "no-cache"})
   return await collections.json();
 }
 
 export const getCollectionDetails = async (collectionId: string) => {
-  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/collections/${collectionId}`)
-  const collection = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections/${collectionId}`)
+  const collection = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collections/${collectionId}`,{cache: "no-cache"})
   return await collection.json();
 }
 
 export const getProducts = async () => {
-  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/products`)
-  const products = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`)
-  return await products.json();
+  const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products`, {cache: "no-cache"});
+  if (!response.ok) {
+    throw new Error('Failed to fetch products');
+  }
+  return await response.json();
 }
 
 export const getProductDetails = async (productId: string) => {
-  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`)
-  const product = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`)
-  return await product.json();
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}`, {cache: "no-cache"});
+    if (!response.ok) {
+      if (response.status === 404) {
+        // Product not found, return null or handle as needed
+        return null;
+      }
+      throw new Error('Failed to fetch product details');
+    }
+    return await response.json();
+  } catch (error) {
+    console.error(`Error fetching product details for ID: ${productId}`, error);
+    // Return null in case of any error
+    return null;
+  }
 }
 
+
 export const getSearchedProducts = async (query: string) => {
-  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/search/${query}`)
-  const searchedProducts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search/${query}`)
+  const searchedProducts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/search/${query}`, {cache: "no-cache"})
   return await searchedProducts.json();
 }
 
 export const getOrders = async (customerId: string) => {
-  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${customerId}`)
-  const orders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${customerId}`)
+  const orders = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/orders/customers/${customerId}`, {cache: "no-cache"})
   return await orders.json();
 }
 
 export const getRelatedProducts = async (productId: string) => {
-  revalidatePath(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related`);
-  const relatedProducts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related`);
+  const relatedProducts = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/products/${productId}/related`, {cache: "no-cache"});
   
   return await relatedProducts.json();
 }
