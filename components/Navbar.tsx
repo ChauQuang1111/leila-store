@@ -49,6 +49,14 @@ const Navbar = () => {
         >
           Orders
         </Link>
+        <Link
+          href={user ? "/aboutus" : "/sign-in"}
+          className={`hover:text-red-1 ${
+            pathname === "/aboutus" && "text-red-1"
+          }`}
+        >
+         About us
+        </Link>
       </div>
 
       <div className="flex gap-3 border border-grey-2 px-3 py-1 items-center rounded-lg">

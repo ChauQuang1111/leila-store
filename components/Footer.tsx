@@ -136,3 +136,4 @@ const footer =()=>{
         </div>
     )
 }
+export default footer;
