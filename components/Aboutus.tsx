@@ -184,7 +184,7 @@ const aboutus=()=>{
 
     
 </footer>
-        </div>
+ </div>
     )
 }
 export default aboutus;
