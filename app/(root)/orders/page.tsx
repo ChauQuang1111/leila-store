@@ -7,7 +7,6 @@ const Orders = async () => {
   const { userId } = auth();
   const orders = await getOrders(userId as string);
 
-  console.log(orders[0].products);
 
   return (
     <div className="px-10 py-5 max-sm:px-3">
@@ -78,6 +77,6 @@ const Orders = async () => {
     </div>
   );
 };
-export const dynamic = "force-dynamic";
+export const dynamic="force-dynamic";
 export default Orders;
 

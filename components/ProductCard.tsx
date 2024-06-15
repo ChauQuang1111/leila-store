@@ -38,3 +38,4 @@ const ProductCard = ({ product, updateSignedInUser }: ProductCardProps) => {
 };
 
 export default ProductCard;
+
