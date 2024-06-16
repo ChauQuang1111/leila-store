@@ -27,9 +27,7 @@ const Navbar = () => {
       <div className="flex gap-4 text-base-bold max-lg:hidden">
         <Link
           href="/"
-          className={`hover:text-red-1 ${
-            pathname === "/" && "text-red-1"
-          }`}
+          className={`hover:text-red-1 ${pathname === "/" && "text-red-1"}`}
         >
           Home
         </Link>
@@ -50,12 +48,12 @@ const Navbar = () => {
           Orders
         </Link>
         <Link
-          href={user ? "/aboutus" : "/sign-in"}
+          href="/about-us"
           className={`hover:text-red-1 ${
-            pathname === "/aboutus" && "text-red-1"
+            pathname === "/about-us" && "text-red-1"
           }`}
         >
-         About us
+          About us
         </Link>
       </div>
 
@@ -104,6 +102,15 @@ const Navbar = () => {
               className="hover:text-red-1"
             >
               Orders
+            </Link>
+
+            <Link
+              href="/about-us"
+              className={`hover:text-red-1 ${
+                pathname === "/about-us" && "text-red-1"
+              }`}
+            >
+              About us
             </Link>
             <Link
               href="/cart"
