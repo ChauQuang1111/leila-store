@@ -28,6 +28,7 @@ const Cart = () => {
       if (!user) {
         router.push("sign-in");
       } else {
+        //maybe can use process.env.NEXT_PUBLIC_API_CHECKOUT to checkout
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/checkout`, {
           method: "POST",
           body: JSON.stringify({ cartItems: cart.cartItems, customer }),
